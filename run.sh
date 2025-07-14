@@ -6,14 +6,12 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 STEP=$1
 case $STEP in
-    requirements)
-        echo "prueba exitosa"
-        ;;
     saludo)
         echo "saludo"
         ;;
     lint)
-        echo "======Ejecutando linters======"
+        # Ejecuta dos linters: flake8 y shellcheck
+        echo "======EJECUTANDO LINTERS======"
         echo "------flake8------"
         flake8 --max-complexity 10 src scripts
         if [[ "$?" -ne 0 ]]; then
@@ -31,17 +29,27 @@ case $STEP in
         done
         ;;
     test)
+        # Ejecuta pytest con coverage usando el archivo de configuración pytest.ini
         echo "======PYTEST======"
         pytest
         ;;
     help)
+        # Muestra cómo ejecutar el script
         echo "======AYUDA======"
         echo "Opciones válidas:"
         echo "    lint"
         echo "    test"
+        echo "    all"
         echo "    help"
         echo "Ejemplo:"
         echo "    ./run.sh lint"
+        ;;
+    all)
+        # Ejecuta todas las opciones, menos "setup" y "help"
+        # Ejecutando "lint"
+        ./run.sh lint
+        # Ejecutando "test"
+        ./run.sh test
         ;;
     *)
         echo "Paso desconocido: $STEP"
