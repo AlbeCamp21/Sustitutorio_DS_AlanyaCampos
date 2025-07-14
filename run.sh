@@ -6,8 +6,8 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 STEP=$1
 case $STEP in
-    saludo)
-        echo "saludo"
+    grafo)
+        python src/graph_analysis.py
         ;;
     lint)
         # Ejecuta dos linters: flake8 y shellcheck
@@ -46,6 +46,8 @@ case $STEP in
         ;;
     all)
         # Ejecuta todas las opciones, menos "setup" y "help"
+        # Ejecutando "grafo"
+        ./run.sh grafo
         # Ejecutando "lint"
         ./run.sh lint
         # Ejecutando "test"
