@@ -81,7 +81,7 @@ class TestGraphAnalysis:
 
     def test_obtener_estadisticas_repositorio(self):
         ruta_actual = Path('.')
-        stats = obtener_estadisticas_repositorio(ruta_actual)      
+        stats = obtener_estadisticas_repositorio(ruta_actual)
         assert isinstance(stats, dict)
         assert 'total_commits' in stats
         assert 'niveles_maximos' in stats
@@ -92,7 +92,7 @@ class TestGraphAnalysis:
         assert isinstance(stats['niveles_maximos'], int)
         assert isinstance(stats['densidad_ramas'], float)
         assert isinstance(stats['commits_raiz'], int)
-        assert isinstance(stats['commits_merge'], int) 
+        assert isinstance(stats['commits_merge'], int)
         assert stats['total_commits'] >= 0
         assert stats['niveles_maximos'] >= 0
         assert stats['densidad_ramas'] >= 0.0
@@ -101,12 +101,12 @@ class TestGraphAnalysis:
 
     def test_dag_coherencia(self):
         ruta_actual = Path('.')
-        dag = construir_dag(ruta_actual) 
+        dag = construir_dag(ruta_actual)
         if dag:
             # ver que todos los padres referenciados existen en el DAG
             for commit, padres in dag.items():
                 for padre in padres:
-                    pass            
+                    pass
             # verificaf que hay al menos un commit raiz
             commits_raiz = [c for c, p in dag.items() if not p]
             assert len(commits_raiz) >= 1
