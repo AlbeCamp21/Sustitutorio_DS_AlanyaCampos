@@ -31,3 +31,13 @@ Archivo ejecutador (en reemplazo de archivo `Makefile`) para la ejecución más 
 ./run.sh <opción>
 ```
 
+### Archivo `graph_analysis.py`
+
+Archivo el cual analiza el repositorio actual y genera un grafo DAG relacionando los commits con sus padres, además de estadísticas extras como el total de commits, densidad, etc.
+
+Se realizaron sus respectivos tests
+
+Ejecución:
+```
+python src/graph_analysis.py
+```
